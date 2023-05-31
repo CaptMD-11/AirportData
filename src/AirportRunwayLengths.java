@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class AirportRunwayLengths {
 
-    private int minLength;
-
-    public AirportRunwayLengths(int inputMinLength) {
-        minLength = inputMinLength;
+    public AirportRunwayLengths() {
     }
 
-    public ArrayList<String> getValidAirports() {
+    /*
+     * this method returns a list of airports that have runways that are less than
+     * or equal to maxLength
+     */
+    public ArrayList<String> getLowBoundRunwayAirports(int maxLength) {
         ArrayList<String> output = new ArrayList<String>();
         try {
             File file = new File("airport_runway_lengths.csv");
@@ -20,11 +21,11 @@ public class AirportRunwayLengths {
 
             while (scanner.hasNextLine()) {
                 int runwayLength = Integer.parseInt(line.substring(line.indexOf(",") + 1, line.lastIndexOf("(") - 1));
-                if (minLength <= runwayLength)
+                if (runwayLength <= maxLength)
                     output.add(line.substring(line.indexOf(" ") + 1, line.indexOf(",")));
                 line = scanner.nextLine();
             }
-
+            scanner.close();
             return output;
 
         } catch (Exception e) {
@@ -33,8 +34,4 @@ public class AirportRunwayLengths {
         return null;
     }
 
-    public static void main(String[] args) throws Exception {
-        AirportRunwayLengths obj = new AirportRunwayLengths(6800);
-        System.out.println(obj.getValidAirports());
-    }
 }
