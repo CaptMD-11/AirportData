@@ -2,14 +2,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AirportRunwayLengths {
+public class AirportData {
 
-    public AirportRunwayLengths() {
+    public AirportData() {
     }
 
     /*
      * this method returns a list of airports that have runways that are less than
-     * or equal to maxLength
+     * or equal to the input runway length (maxLength)
      */
     public ArrayList<String> getLowBoundRunwayAirports(int maxLength) {
         ArrayList<String> output = new ArrayList<String>();
